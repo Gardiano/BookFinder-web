@@ -1,35 +1,52 @@
-<br />
-<a id="readme-top"></a>
-<h1 align='center'> Book Finder</h1>
+
+<h1 align="center">
+  Book Finder
+</h1>
+
+<p align="center">
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-como-executar">Como executar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-licença">Licença</a>
+</p>
+
+<p align="center">
+  <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=8257E5&labelColor=000000">
+</p>
 
 <div align='center'> 
 <p align='center'> 
 
-[Link Para Visualização Do Projeto](https://cloud.google.com/?hl=pt_br)
+[Link Para Visualização Do Projeto](https://project-bookfinderapp.vercel.app/)
 
-<img src="src/assets/ezgif.gif" alt="BookFinder Demo" width="900" height="500">
+<img src="src/assets/ezgif.gif" alt="BookFinder Demo" width="900" height="450">
 
 </p> 
 </div>
-<br />
-<div align='center'>
-Aplicativo web que entrega aos usuários listas de livros, procurar livros pelo nome ou autor e salvar seus livros favoritos.
-</div>
-<br /> <br />
-<p align="right">(<a href="#readme-top">Voltar ao topo</a>)</p>
 
+<br>
 
-## Funcionalidades
-- **Listagem de Livros**: Veja uma lista abrangente de livros.
-- **Busca**: Procure por livros pelo nome ou pelo autor.
-- **Favoritos**: Salve livros na sessão de favoritos para fácil acesso posterior.
-<p align="right">(<a href="#readme-top">Voltar ao topo</a>)</p>
+## ✨ Tecnologias
 
-## Techs
-* [React](https://ui.shadcn.com/)
+* [React](https://react.dev/)
+* [Typescript](https://www.typescriptlang.org/)
 * [shadcn](https://ui.shadcn.com/)
 * [Lucide](https://lucide.dev/)
 * [Google Cloud Platform](https://cloud.google.com/)
-<p align="right">(<a href="#readme-top">Voltar ao topo</a>)</p>
 
-##
+
+## 💻 Projeto
+O BookFinder é uma aplicação web que entrega aos usuários listas de livros, encontrar livros pelo nome ou autor e criar uma lista de seus livros favoritos.
+
+## 🚀 Como executar
+
+- Clone o repositório
+- Instale as dependências `npm install`
+- Inicie o servidor com `npm run dev`
+- Use sua api key - Google Books
+
+## 📄 Licença
+
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
+
+---
