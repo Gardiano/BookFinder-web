@@ -10,16 +10,19 @@
   <a href="#-licença">Licença</a>
 </p>
 
-<p align="center">
+<p align="center"> <br />
   <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=8257E5&labelColor=000000">
 </p>
 
 <div align='center'> 
 <p align='center'> 
 
-[Link Para Visualização Do Projeto](https://project-bookfinderapp.vercel.app/)
 
-<img src="src/assets/ezgif.gif" alt="BookFinder Demo" width="900" height="450">
+<br /><br />
+<a href="https://project-bookfinderapp.vercel.app/" target="_blank">Link Para Visualização Do Projeto</a>
+<br /><br /><br />
+
+<img src="src/assets/ezgif.gif" alt="BookFinder" width="900" height="450">
 
 </p> 
 </div>
@@ -28,11 +31,11 @@
 
 ## ✨ Tecnologias
 
-* [React](https://react.dev/)
-* [Typescript](https://www.typescriptlang.org/)
-* [shadcn](https://ui.shadcn.com/)
-* [Lucide](https://lucide.dev/)
-* [Google Cloud Platform](https://cloud.google.com/)
+* <a href="https://react.dev/" target="_blank">React</a>
+* <a href="https://www.typescriptlang.org/" target="_blank">Typescript</a>
+* <a href="https://ui.shadcn.com/" target="_blank">Shadcn</a>
+* <a href="https://lucide.dev/" target="_blank">Lucide</a>
+* <a href="https://cloud.google.com/" target="_blank">Google Cloud Platform</a>
 
 
 ## 💻 Projeto
@@ -47,6 +50,6 @@ O BookFinder é uma aplicação web que entrega aos usuários listas de livros, 
 
 ## 📄 Licença
 
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
+Esse projeto está sob a licença MIT. Veja o arquivo <a href="https://docs.github.com/pt/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository" target="_blank">`LICENSE`</a> para mais detalhes.
 
 ---
