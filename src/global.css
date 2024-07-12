@@ -2,20 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .shadow-inner-lg {
-    @apply shadow-inner;
-    -webkit-box-shadow: inset -51px 0px 98px -64px rgba(0, 0, 0, 1);
-    -moz-box-shadow: inset -51px 0px 98px -64px rgba(0, 0, 0, 1);
-    box-shadow: inset -51px 0px 98px -64px rgba(0, 0, 0, 1);
-  }
-}
-
 @layer base {
   body {
     box-sizing: border-box;
     background: #171719 !important;
-    /* background: #0a0a0a !important; */
   }
 
   :root {
