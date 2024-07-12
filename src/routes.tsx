@@ -12,13 +12,13 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      { path: "/", element: <Home /> },
+      { index: true, element: <Home /> },
       { path: "/book/:id", element: <Book /> },
       { path: "/books/:id", element: <BooksCard /> },
       { path: "/favorites", element: <Favorite /> },
     ],
-    errorElement: <ErrorPage />,
   },
+  { path: "*", element: <ErrorPage /> }
 ]);
 
 export default router;
