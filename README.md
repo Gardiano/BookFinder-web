@@ -19,7 +19,7 @@
 
 
 <br /><br />
-<a href="https://project-bookfinderapp.vercel.app/" target="_blank">Link Para Visualização Do Projeto</a>
+<a href="https://thebookfinder.vercel.app/" target="_blank">Link Para Visualização Do Projeto</a>
 <br /><br /><br />
 
 <img src="src/assets/ezgif.gif" alt="BookFinder" width="900" height="450">
