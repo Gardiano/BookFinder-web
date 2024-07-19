@@ -32,6 +32,7 @@ export const Book = () => {
 
   useEffect(() => {
     getDataBook();
+    // add scroll to top on page load;
     window.scrollTo(0, 0);
   }, [params.id!]);
 
