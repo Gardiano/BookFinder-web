@@ -18,6 +18,8 @@ import { Button } from "../ui/button";
 import { Toasts } from "@/helpers/toasts";
 import { Toaster } from "../ui/toaster";
 import { NavigateBackButton } from "../buttons/NavigateBackButton";
+import { addToFavorites } from "../favorites/addToFavorites";
+import { FilteredRelatedCategories } from "@/helpers/filterRelatedBooks";
 
 export const Book = () => {
   const params = useParams();
@@ -27,13 +29,10 @@ export const Book = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [relatedBooks, setRelatedBooks] = useState<Books[]>([]);
   const [itsFavorite, setItsFavorite] = useState<boolean>(false);
-  const predefinedCategories = [
-    'General', 'Philosophy', 'Classics', 'Art', 'Fiction', 'Literature',
-    'Political', 'Politic', 'Politics', 'Policy', 'Romance', '', ' '
-  ]
 
   useEffect(() => {
     getDataBook();
+    window.scrollTo(0, 0);
   }, [params.id!]);
 
   useEffect(() => {
@@ -50,18 +49,12 @@ export const Book = () => {
     try {
       const response: BookProps<Books> = await getItemById(params.id!);
       setItems(response.data);
-      FilteredRelatedCategories(response.data.volumeInfo?.categories);
+      FilteredRelatedCategories(response.data.volumeInfo?.categories, setCategories);
       success_Toast(`${response.data.volumeInfo.title}`, 'Volume encontrado com sucesso.');
     } catch (e) {
       error_Toast('error', 'Algo deu errado, tente novamente.');
-      throw new Error
+      throw new Error;
     }
-  }
-
-  const FilteredRelatedCategories = (arr: string[]) => {
-    let find = arr.find((element: string) => predefinedCategories.includes(element.split(' / ')[0]));
-    let category = find ? find.split(' / ')[0] : null;
-    setCategories(category ? [category] : []);
   }
 
   const getRelatedShelfBooks = async (categories: string[]) => {
@@ -70,7 +63,7 @@ export const Book = () => {
       const validItems = filterData(response.data);
       setRelatedBooks(validItems);
     } catch (e) {
-      throw new Error
+      throw new Error;
     }
   }
 
@@ -79,44 +72,15 @@ export const Book = () => {
       const favId = items.id;
       const fav = JSON.parse(localStorage.getItem('favorites') ?? '[]');
       const foundFavorite = fav.find((element: any) => element.id === favId);
-
       setItsFavorite(!!foundFavorite);
     } else {
       setItsFavorite(false);
     }
   }
 
-  const addToFavorites = () => {
-    const itemId = items?.id;
-    const obj = {
-      id: items?.id,
-      saved: true,
-      volumeInfo: {
-        title: items?.volumeInfo.title,
-        imageLinks: {
-          thumbnail: items?.volumeInfo.imageLinks?.thumbnail!
-        }
-      }
-    }
-
-    if (!itemId) {
-      console.error("bookID is not finded");
-      return;
-    }
-
-    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-    const existingBookIndex = favorites.findIndex((book: any) => book.id === itemId);
-
-    if (existingBookIndex > -1) {
-      favorites.splice(existingBookIndex, 1);
-    } else {
-      console.log(obj.saved)
-      favorites.push(obj);
-    }
-
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-    checkFavorites();
-  };
+  const favorites = () => {
+    return addToFavorites(items, checkFavorites);
+  }
 
   return (
     <>
@@ -124,19 +88,19 @@ export const Book = () => {
        justify-end sm:flex"
       >
         <NavigateBackButton
-          className="text-slate-100 bg-transparent rounded-full hover:bg-amber-600"
+          className="text-slate-100 bg-transparent shadow-none rounded-full hover:bg-amber-600"
         />
       </div>
       <main className="w-full mx-auto h-full flex
       items-start justify-center">
-        <div className="w-full max-w-[1300px] p-4 gap-8 flex justify-center flex-col
-        xl:flex-row items-start">
+        <div className="w-full max-w-[1300px] py-0 px-4 gap-4 items-start flex justify-center flex-col
+        xl:flex-row sm:py-4 sm:gap-4">
           <div className="w-full max-w-[1000px] mx-auto p-4 bg-[#1e1e1e] h-auto flex flex-col
           justify-center items-center gap-y-4 2xl:max-w-[300px]">
             <div className="w-full h-[2px] flex relative items-start justify-end">
               <Button
                 disabled={!items}
-                onClick={addToFavorites}
+                onClick={favorites}
                 className="flex relative right-[-8px] top-[-14px] bg-[#1e1e1e] 
               shadow-none hover:bg-transparent m-0 p-0">
                 <Bookmark className={!itsFavorite ? 'text-white' : 'text-yellow-400'} />
@@ -176,21 +140,22 @@ export const Book = () => {
                 className="text-slate-400 w-fit p-none"
                 published_date={items?.volumeInfo.publishedDate}
               />
-              {items && <BibliographicInfo
+              {items && ( <BibliographicInfo
                 language={items?.volumeInfo.language}
                 publisher={items?.volumeInfo?.publisher!}
                 image={items?.volumeInfo.imageLinks.thumbnail!}
-                categories={categories?.map((categories: any) => categories)}
+                categories={categories?.map((categories: string) => categories)}
                 industryIdentifiers={items?.volumeInfo.industryIdentifiers?.[0] &&
                   <p>ISBN {items.volumeInfo.industryIdentifiers[0].identifier}</p>
-                }
-              />}
+              }
+              />
+              )} 
             </div>
             <Separator className="flex bg-slate-400 sm:hidden" orientation="horizontal" />
 
             <div className="w-full max-w-[1300px] p-6 bg-[#1e1e1e] rounded-md">
               <Description
-                className=" text-justify text-slate-100 h-[200px]
+               className="text-justify text-slate-100 h-[200px]
                overflow-x-hidden p-4 overflow-y-scroll 
                scrollbar-thin scrollbar-thumb-amber-600 scrollbar-track-[#373737]
                 "
@@ -199,12 +164,13 @@ export const Book = () => {
             </div>
 
             <div className="flex flex-rol flex-wrap items-center justify-center bg-[#1e1e1e] rounded-md">
-              {relatedBooks.length == 0 ? null :
+              {relatedBooks.length > 0 && (
                 <Carousels
                   data={relatedBooks}
                   title="Livros Relacionados"
                   className="w-auto max-w-[calc(100%-40px)] h-auto sm:mt-0 sm:w-[83%] p-4 rounded-md bg-[#1e1e1e]"
-                />}
+                />
+              )}
             </div>
             <Separator className="flex bg-slate-400 sm:hidden" orientation="horizontal" />
           </div>
