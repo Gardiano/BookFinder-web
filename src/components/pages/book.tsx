@@ -24,7 +24,6 @@ import { FilteredRelatedCategories } from "@/helpers/filterRelatedBooks";
 export const Book = () => {
   const params = useParams();
   const success_Toast = Toasts().success_Toast;
-  const error_Toast = Toasts().error_Toast;
   const [items, setItems] = useState<Books | any>();
   const [categories, setCategories] = useState<string[]>([]);
   const [relatedBooks, setRelatedBooks] = useState<Books[]>([]);
@@ -32,7 +31,6 @@ export const Book = () => {
 
   useEffect(() => {
     getDataBook();
-    // add scroll to top on page load;
     window.scrollTo(0, 0);
   }, [params.id!]);
 
@@ -53,7 +51,6 @@ export const Book = () => {
       FilteredRelatedCategories(response.data.volumeInfo?.categories, setCategories);
       success_Toast(`${response.data.volumeInfo.title}`, 'Volume encontrado com sucesso.');
     } catch (e) {
-      error_Toast('error', 'Algo deu errado, tente novamente.');
       throw new Error;
     }
   }
